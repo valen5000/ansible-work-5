@@ -1,0 +1,36 @@
+---
+- name: Multi-OS Deployment
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install Web Server on CentOS
+      yum:
+        name: httpd
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: Install Web Server on Ubuntu
+      apt:
+        name: apache2
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Start Web Service on CentOS
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+      when: ansible_os_family == "RedHat"
+
+    - name: Start Web Service on Ubuntu
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Deploy Web Page
+      copy:
+        content: "<h1>Deployed on {{ ansible_distribution }}</h1>"
+        dest: /var/www/html/index.html

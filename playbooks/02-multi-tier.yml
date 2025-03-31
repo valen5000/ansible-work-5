@@ -1,0 +1,35 @@
+---
+- name: Setup Web Server
+  hosts: web
+  become: yes
+
+  tasks:
+    - name: Install Apache
+      yum:
+        name: httpd
+        state: present
+
+    - name: Start Apache Service
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+- name: Setup Database Server
+  hosts: db
+  become: yes
+
+  tasks:
+    - name: Install PostgreSQL
+      yum:
+        name: postgresql-server
+        state: present
+
+    - name: Initialize PostgreSQL Database
+      command: postgresql-setup initdb
+
+    - name: Start PostgreSQL Service
+      service:
+        name: postgresql
+        state: started
+        enabled: yes

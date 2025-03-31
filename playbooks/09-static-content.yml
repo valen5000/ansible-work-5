@@ -1,0 +1,13 @@
+---
+- name: Deploy Static Website
+  hosts: web
+  become: yes
+
+  tasks:
+    - name: Copy Static HTML Files
+      copy:
+        src: static.html
+        dest: /var/www/html/index.html
+        owner: apache
+        group: apache
+        mode: '0644'

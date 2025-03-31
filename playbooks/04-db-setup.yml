@@ -1,0 +1,31 @@
+---
+- name: Install and Configure Database Server
+  hosts: db
+  become: yes
+
+  tasks:
+    - name: Install PostgreSQL
+      yum:
+        name: postgresql-server
+        state: present
+
+    - name: Initialize PostgreSQL
+      command: postgresql-setup initdb
+
+    - name: Start PostgreSQL Service
+      service:
+        name: postgresql
+        state: started
+        enabled: yes
+
+    - name: Create Database
+      postgresql_db:
+        name: mydatabase
+        state: present
+
+    - name: Create Database User
+      postgresql_user:
+        db: mydatabase
+        name: dbuser
+        password: securepass
+        priv: "ALL"

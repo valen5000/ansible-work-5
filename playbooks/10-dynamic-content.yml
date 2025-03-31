@@ -1,0 +1,18 @@
+---
+- name: Deploy Dynamic Website
+  hosts: web
+  become: yes
+
+  tasks:
+    - name: Install PHP
+      yum:
+        name: php
+        state: present
+
+    - name: Copy PHP Template
+      template:
+        src: dynamic.j2
+        dest: /var/www/html/index.php
+        owner: apache
+        group: apache
+        mode: '0644'

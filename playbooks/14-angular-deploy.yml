@@ -1,0 +1,15 @@
+---
+- name: Deploy Angular App
+  hosts: web
+  become: yes
+
+  tasks:
+    - name: Install Node.js and Angular CLI
+      yum:
+        name:
+          - nodejs
+          - npm
+        state: present
+
+    - name: Install Angular CLI Globally
+      command: npm install -g @angular/cli
