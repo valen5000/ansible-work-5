@@ -1,0 +1,24 @@
+---
+- name: Generate dynamic configuration file
+  hosts: localhost
+  vars:
+    app_name: "MyFlaskApp"
+    environment: "production"
+    version: "2.0.1"
+    db_host: "db.example.com"
+    db_port: 5432
+    db_user: "dbuser"
+    db_password: "securepassword"
+    db_name: "myflaskdb"
+    flask_host: "0.0.0.0"
+    flask_port: 5000
+    flask_debug: false
+    node_host: "0.0.0.0"
+    node_port: 3000
+    log_level: "DEBUG"
+    log_location: "/var/log/myflaskapp/"
+  tasks:
+    - name: Generate config file from template
+      template:
+        src: dynamic.j2
+        dest: /etc/myflaskapp/config.yml
