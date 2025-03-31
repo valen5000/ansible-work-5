@@ -1,0 +1,16 @@
+---
+- name: Create /opt/devops directory on all managed nodes
+  hosts: all
+  become: yes
+  tasks:
+    - name: Check if /opt/devops directory exists
+      ansible.builtin.stat:
+        path: /opt/devops
+      register: devops_dir
+
+    - name: Create /opt/devops directory if it doesn't exist
+      ansible.builtin.file:
+        path: /opt/devops
+        state: directory
+        mode: '0755'
+      when: not devops_dir.stat.exists
