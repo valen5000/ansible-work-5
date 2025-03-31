@@ -15,6 +15,7 @@
         state: started
         enabled: yes
 
+
     - name: Deploy Default HTML Page
       copy:
         src: static.html
@@ -22,3 +23,4 @@
         owner: apache
         group: apache
         mode: '0644'
+...

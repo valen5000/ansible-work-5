@@ -3,15 +3,19 @@
   hosts: all
   become: yes
 
+
   tasks:
     - name: Update System Packages
       yum:
         name: '*'
         state: latest
 
+
     - name: Remove Unused Packages
       yum:
         autoremove: yes
 
+
     - name: Clean Package Cache
       command: yum clean all
+...

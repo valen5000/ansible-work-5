@@ -3,6 +3,7 @@
   hosts: web
   become: yes
 
+
   tasks:
     - name: Copy Static HTML Files
       copy:
@@ -11,3 +12,4 @@
         owner: apache
         group: apache
         mode: '0644'
+...

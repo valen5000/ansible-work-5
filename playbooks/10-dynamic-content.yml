@@ -3,11 +3,13 @@
   hosts: web
   become: yes
 
+
   tasks:
     - name: Install PHP
       yum:
         name: php
         state: present
+
 
     - name: Copy PHP Template
       template:
@@ -16,3 +18,4 @@
         owner: apache
         group: apache
         mode: '0644'
+...

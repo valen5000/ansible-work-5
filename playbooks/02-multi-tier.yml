@@ -25,6 +25,7 @@
         name: postgresql-server
         state: present
 
+
     - name: Initialize PostgreSQL Database
       command: postgresql-setup initdb
 
@@ -33,3 +34,4 @@
         name: postgresql
         state: started
         enabled: yes
+...

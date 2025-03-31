@@ -3,17 +3,20 @@
   hosts: all
   become: yes
 
+
   tasks:
     - name: Ensure Firewall is Installed
       yum:
         name: firewalld
         state: present
 
+
     - name: Start Firewall
       service:
         name: firewalld
         state: started
         enabled: yes
+
 
     - name: Allow HTTP Traffic
       firewalld:
@@ -22,9 +25,11 @@
         state: enabled
         immediate: yes
 
+
     - name: Allow SSH Traffic
       firewalld:
         service: ssh
         permanent: yes
         state: enabled
         immediate: yes
+...

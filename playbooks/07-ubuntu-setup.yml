@@ -3,18 +3,22 @@
   hosts: ubuntu
   become: yes
 
+
   tasks:
     - name: Update Package List
       apt:
         update_cache: yes
+
 
     - name: Install Nginx
       apt:
         name: nginx
         state: present
 
+
     - name: Start and Enable Nginx
       service:
         name: nginx
         state: started
         enabled: yes
+...

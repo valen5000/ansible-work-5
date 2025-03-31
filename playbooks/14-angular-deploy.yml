@@ -13,3 +13,4 @@
 
     - name: Install Angular CLI Globally
       command: npm install -g @angular/cli
+      ...

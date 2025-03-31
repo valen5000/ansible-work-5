@@ -16,12 +16,14 @@
         state: present
       when: ansible_os_family == "Debian"
 
+
     - name: Start Web Service on CentOS
       service:
         name: httpd
         state: started
         enabled: yes
       when: ansible_os_family == "RedHat"
+
 
     - name: Start Web Service on Ubuntu
       service:
@@ -30,7 +32,9 @@
         enabled: yes
       when: ansible_os_family == "Debian"
 
+
     - name: Deploy Web Page
       copy:
         content: "<h1>Deployed on {{ ansible_distribution }}</h1>"
         dest: /var/www/html/index.html
+...
