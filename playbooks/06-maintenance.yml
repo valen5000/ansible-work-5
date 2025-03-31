@@ -7,7 +7,7 @@
   tasks:
     - name: Update System Packages
       yum:
-        name: '*'
+        name: 
         state: latest
 
 
